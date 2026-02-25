@@ -1,0 +1,44 @@
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{natbib}
+
+\input{paper/header}
+
+% Stub out bioinfo.cls commands
+\newcommand{\subtitle}[1]{\begin{center}\large #1\end{center}}
+\newcommand{\corresp}[1]{}
+\newcommand{\history}[1]{}
+\newcommand{\editor}[1]{}
+\newcommand{\firstpage}[1]{}
+\renewcommand{\abstract}[1]{%
+  \begin{center}\textbf{Abstract}\end{center}
+  \begin{quote}\small #1\end{quote}
+  \medskip}
+
+\begin{document}
+
+\title{mkado: a toolkit for McDonald-Kreitman tests of natural selection}
+\author{Andrew D.\ Kern\textsuperscript{1,*}\\[4pt]
+  \small\textsuperscript{1}Institute of Ecology and Evolution and Department of Biology,
+  University of Oregon, Eugene, OR 97403, USA\\
+  \small\textsuperscript{*}Correspondence: \href{mailto:adkern@uoregon.edu}{adkern@uoregon.edu}}
+\date{}
+
+\maketitle
+
+\input{paper/abstract}
+
+\input{paper/introduction}
+\input{paper/methods}
+\input{paper/results}
+
+\input{paper/acknowledgements}
+\input{paper/funding}
+
+\bibliographystyle{plainnat}
+\bibliography{bibliography}
+
+\end{document}
