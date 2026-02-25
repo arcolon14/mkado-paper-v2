@@ -1,0 +1,81 @@
+\section{Introduction}
+
+The McDonald-Kreitman (MK) test \citep{mcdonald1991}
+is among the most widely used methods for detecting natural selection
+at the molecular level.
+By comparing the ratio of nonsynonymous to synonymous changes
+within species (polymorphism) to that between species (divergence),
+the MK test provides a direct test of the neutral theory prediction
+that these ratios should be equal.
+Departures from this expectation,
+often quantified by the neutrality index \citep[NI;][]{rand1996}
+or the fraction of adaptive substitutions $\alpha$ \citep{smith2002},
+have revealed pervasive positive selection across a wide range of taxa.
+
+A key challenge for the standard MK test is that
+slightly deleterious nonsynonymous mutations,
+which contribute to polymorphism but rarely fix,
+inflate Pn relative to Dn and bias $\alpha$ downward
+\citep{charlesworth1993, eyre-walker2006}.
+The asymptotic MK test addresses this by estimating $\alpha$
+as a function of derived allele frequency
+and extrapolating to fixation,
+effectively removing the contribution of weakly deleterious variants
+\citep{messer2013, haller2017}.
+The polarized MK test uses a second outgroup
+to assign fixed differences to specific lineages,
+allowing lineage-specific inference of selection \citep{smith2002}.
+
+Despite the centrality of MK-based methods to molecular evolution,
+existing software implementations remain fragmented.
+DnaSP \citep{librado2009} provides the standard test
+through a Windows-only graphical interface.
+The iMKT R package and web server \citep{murga-moreno2019}
+implements several extensions
+but requires pre-computed summary statistics
+and is tightly coupled to specific databases.
+The asymptoticMK web tool \citep{haller2017}
+implements the asymptotic test
+but does not accept raw sequence data.
+No existing tool provides a unified command-line interface
+that takes aligned coding sequences as input
+and supports the standard, polarized, and asymptotic MK tests
+together with batch processing across thousands of genes
+(\cref{tab:comparison}).
+
+Here we present \mkado, a Python package that fills this gap.
+\mkado takes codon-aligned FASTA files as input
+and implements the standard, polarized, and asymptotic MK tests
+with a consistent command-line interface.
+It supports parallel batch processing of genome-scale datasets,
+automatic multiple testing correction,
+and built-in visualization
+including volcano plots and asymptotic $\alpha$ curves.
+\mkado is installable via \texttt{pip}
+and is designed to integrate naturally
+with modern Python-based bioinformatics workflows.
+
+\begin{table}[!t]
+  \centering
+  \caption{Feature comparison of MK test software. Checkmarks indicate
+    built-in support; dashes indicate the feature is absent.}
+  \label{tab:comparison}
+  \footnotesize
+  \begin{tabular}{@{}lcccc@{}}
+    \toprule
+    Feature & DnaSP & iMKT & \begin{tabular}[c]{@{}c@{}}asymptotic\\[-3pt]MK\end{tabular} & \mkado \\
+    \midrule
+    Sequence input        & \checkmark & web only   & ---          & \checkmark \\
+    Standard MK           & \checkmark & \checkmark & ---          & \checkmark \\
+    Polarized MK          & ---        & ---        & ---          & \checkmark \\
+    Asymptotic MK         & ---        & \checkmark & \checkmark   & \checkmark \\
+    CLI                   & ---        & ---        & ---          & \checkmark \\
+    Batch processing      & ---        & ---        & ---          & \checkmark \\
+    Parallel execution    & ---        & ---        & ---          & \checkmark \\
+    Multiple testing corr.& ---        & ---        & ---          & \checkmark \\
+    Visualization         & limited    & \checkmark & \checkmark   & \checkmark \\
+    Open source           & ---        & \checkmark & \checkmark   & \checkmark \\
+    Cross-platform        & ---        & \checkmark & \checkmark   & \checkmark \\
+    \bottomrule
+  \end{tabular}
+\end{table}

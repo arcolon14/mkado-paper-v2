@@ -1,0 +1,53 @@
+\section{Application}
+
+To demonstrate \mkado at genome scale,
+we assembled a dataset of 12,437 human protein-coding genes
+with both polymorphism and divergence data.
+Codon-aligned orthologous sequences
+for human (\textit{Homo sapiens}),
+chimpanzee (\textit{Pan troglodytes}),
+and orangutan (\textit{Pongo abelii})
+were obtained from OrthoMaM v12 \citep{orthomam2024}.
+Human intraspecific polymorphism was drawn from 178 Yoruba (YRI)
+individuals in the 1000 Genomes Project NYGC high-coverage dataset
+\citep{1000genomes2015},
+yielding 356 phased haplotypes per gene.
+Variants were mapped onto the OrthoMaM alignment coordinates
+to produce multi-species FASTA files
+suitable for direct input to \mkado.
+
+Using chimpanzee as the outgroup,
+genome-wide pooled counts were
+Dn\,=\,37,120, Ds\,=\,65,228, Pn\,=\,44,850, and Ps\,=\,47,838.
+The per-gene standard MK test identified 465 genes
+with nominally significant departures from neutrality ($p < 0.05$),
+though none survived Benjamini-Hochberg correction,
+consistent with the limited power of single-gene tests
+at human-chimpanzee divergence levels.
+As expected,
+the majority of testable genes showed NI~$>$~1 (\cref{fig:volcano}),
+reflecting the well-characterized excess
+of slightly deleterious nonsynonymous polymorphism in humans
+\citep{eyre-walker2006}.
+The aggregated asymptotic MK test estimated
+$\hat{\alpha} = 0.075$ (95\% CI: $-1.22$ to $0.11$),
+with the wide confidence interval reflecting uncertainty
+in extrapolating the frequency-dependent $\alpha(x)$ curve
+from the relatively shallow human-chimpanzee divergence.
+
+Switching to orangutan as the outgroup
+substantially improved precision.
+The longer divergence time yielded roughly 2.5-fold more
+fixed differences (Dn\,=\,94,578, Ds\,=\,188,325),
+and the asymptotic estimate tightened to
+$\hat{\alpha} = 0.163$ (95\% CI: 0.075 to 0.253),
+indicating that approximately 16\% of amino acid substitutions
+on the human lineage were driven by positive selection.
+This estimate is consistent with previous analyses
+of human coding sequences \citep{messer2013, eyre-walker2006}.
+
+The entire analysis---standard MK tests,
+asymptotic estimation,
+and volcano plot generation for all 12,437 genes---completed
+in under one minute on a multi-core workstation
+using \mkado's parallel batch mode.
