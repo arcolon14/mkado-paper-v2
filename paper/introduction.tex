@@ -9,9 +9,11 @@ the MK test provides a direct test of the neutral theory prediction
 that these ratios should be equal. Departures from this expectation,
 often quantified by the neutrality index \citep[NI;][]{rand1996}
 or the fraction of adaptive substitutions $\alpha$ \citep{smith2002},
-have revealed pervasive positive selection across a wide range of taxa.
-% Maybe one or two citations here? I think Matt's book has some examples
-% we could pull from.
+have revealed pervasive positive selection across a wide range of taxa
+\citep[e.g.,][]{lozada-chavez2025, brown2024, liti2009, lam2010,
+downing2009, hughes2008, li2008}.
+% I put some examples here. Probably far more than we need, but rather have
+% some we can pick and chose as needed.
 
 A key challenge for the standard MK test is that
 slightly deleterious nonsynonymous mutations,
@@ -41,13 +43,6 @@ and is tightly coupled to specific databases.
 The \texttt{asymptoticMK} web tool \citep{haller2017}
 implements the asymptotic test
 but does not accept raw sequence data.
-% I added degenotate here since it is the original thing Scott and I
-% wanted to test for the barnacles. I've also seen it used on a few papers,
-% since it is part of snpArcher. When it works, it seems to work well, but
-% it is dependent on having those outgroup variants which can get tricky on
-% some cases. For example, for us the biggest setback was lifting the
-% crenatus variants into the glandula genome to generate a single VCF with
-% ingroup and outgroup sequences.
 The \texttt{degenotate} software, part of the \texttt{snpArcher}
 pipeline \cite{mirchandani2023}, can calculate both standard and 
 imputed versions of the test; however it does so only using
@@ -78,29 +73,28 @@ with modern Python-based bioinformatics workflows.
     built-in support; dashes indicate the feature is absent.}
   \label{tab:comparison}
   \footnotesize
-  \begin{tabular}{@{}lcccc@{}}
+  \begin{tabular}{@{}lccccc@{}}
     \toprule
-    Feature & \texttt{DnaSP} & \texttt{iMKT} & \begin{tabular}[c]{@{}c@{}}asymptotic\\[-3pt]MK\end{tabular} & \mkado \\
+    Feature & \texttt{DnaSP} & \texttt{iMKT} & \begin{tabular}[c]{@{}c@{}}asymptotic\\[-3pt]MK\end{tabular} &
+      \texttt{degenotate} & \mkado \\
     \midrule
-    Sequence input        & \checkmark & web only   & ---          & \checkmark \\
-    Standard MK           & \checkmark & \checkmark & ---          & \checkmark \\
-    Polarized MK          & ---        & ---        & ---          & \checkmark \\
-    Asymptotic MK         & ---        & \checkmark & \checkmark   & \checkmark \\
-    $\alpha_\text{TG}$    & ---        & ---        & ---          & \checkmark \\
-    Frequency filtering   & ---        & \checkmark & \checkmark   & \checkmark \\
-    CLI                   & ---        & ---        & ---          & \checkmark \\
-    Python API            & ---        & ---        & ---          & \checkmark \\
-    Batch processing      & ---        & ---        & ---          & \checkmark \\
-    Parallel execution    & ---        & ---        & ---          & \checkmark \\
-    Multiple testing corr.& ---        & ---        & ---          & \checkmark \\
-    Visualization         & limited    & \checkmark & \checkmark   & \checkmark \\
-    Open source           & ---        & \checkmark & \checkmark   & \checkmark \\
-    Cross-platform        & ---        & \checkmark & \checkmark   & \checkmark \\
+    Sequence input        & \checkmark & web only   & ---          & ---        & \checkmark \\
+    Standard MK           & \checkmark & \checkmark & ---          & \checkmark & \checkmark \\
+    Polarized MK          & ---        & ---        & ---          & ---        & \checkmark \\
+    Asymptotic MK         & ---        & \checkmark & \checkmark   & ---        & \checkmark \\
+    $\alpha_\text{TG}$    & ---        & ---        & ---          & ---        & \checkmark \\
+    Frequency filtering   & ---        & \checkmark & \checkmark   & \checkmark & \checkmark \\
+    CLI                   & ---        & ---        & ---          & \checkmark & \checkmark \\
+    Python API            & ---        & ---        & ---          & ---        & \checkmark \\
+    Batch processing      & ---        & ---        & ---          & ---        & \checkmark \\
+    Parallel execution    & ---        & ---        & ---          & ---        & \checkmark \\
+    Multiple testing corr.& ---        & ---        & ---          & ---        & \checkmark \\
+    Visualization         & limited    & \checkmark & \checkmark   & ---        & \checkmark \\
+    Open source           & ---        & \checkmark & \checkmark   & \checkmark & \checkmark \\
+    Cross-platform        & ---        & \checkmark & \checkmark   & \checkmark & \checkmark \\
     \bottomrule
   \end{tabular}
 \end{table}
-% If we decide to add degenotate, it can do both a standard and the imputed MK test
-% (which is the one from iMKT). It can also do DoS according to their docs.
-% https://github.com/harvardinformatics/degenotate
-% It takes a VCF input, has a CLI, is open source, and cross platform. I can take
-% a more detailed look if we decide to add it.
+% I added degenotate to the table above. To be sure, someone should do another pass
+% at their docs to make sure we are not missing any of the options.
+% I know Scott has used it in the pass, so we could check with him as wekk,.
