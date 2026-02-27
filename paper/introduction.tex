@@ -22,7 +22,8 @@ as a function of derived allele frequency
 and extrapolating to fixation,
 effectively removing the contribution of weakly deleterious variants
 \citep{messer2013, haller2017}.
-The polarized MK test uses a second outgroup
+To address lineage-specific selection, the polarized MK test
+uses a second outgroup
 to assign fixed differences to specific lineages,
 allowing lineage-specific inference of selection \citep{smith2002}.
 
@@ -34,9 +35,10 @@ The iMKT R package and web server \citep{murga-moreno2019}
 implements several extensions
 but requires pre-computed summary statistics
 and is tightly coupled to specific databases.
-The asymptoticMK web tool \citep{haller2017}
-implements the asymptotic test
-but does not accept raw sequence data.
+The asymptoticMK web tool, which is now 
+defunct and available as R code \citep{haller2017},
+implemented the asymptotic test without 
+accepting raw sequence data.
 No existing tool provides a unified command-line interface
 that takes aligned coding sequences as input
 and supports the standard, polarized, and asymptotic MK tests
