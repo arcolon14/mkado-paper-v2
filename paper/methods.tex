@@ -71,7 +71,7 @@ following the approach of \citet{nei1986}.
 MKado's \texttt{batch} command processes directories of alignment files
 in parallel using Python's multiprocessing facilities
 with configurable worker counts.
-Benjamini-Hochberg adjusted $p$-values
+Benjamini-Hochberg false discovery rate (FDR) $q$-values
 are computed automatically across all genes.
 Results are available in human-readable, TSV, or JSON formats.
 A companion \texttt{info} command reports alignment diagnostics
