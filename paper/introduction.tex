@@ -29,6 +29,13 @@ by estimating $\alpha$ as a function of derived allele frequency
 and extrapolating to fixation,
 effectively removing the contribution of weakly deleterious variants
 \citep{messer2013, haller2017}.
+Rather than discarding low-frequency polymorphisms entirely,
+the imputed MK test uses the ratio of low- to high-frequency
+synonymous polymorphisms to estimate the expected number
+of weakly deleterious nonsynonymous polymorphisms
+and subtracts them from the total,
+retaining more data while correcting for the bias
+\citep{murga-moreno2022}.
 To address lineage-specific selection, the polarized MK test
 uses a second outgroup
 to assign fixed differences to specific lineages,
@@ -60,7 +67,8 @@ together with batch processing across thousands of genes
 
 Here we present \mkado, a Python package that fills this gap.
 \mkado takes codon-aligned FASTA files as input
-and implements the standard, polarized, and asymptotic MK tests,
+and implements the standard, polarized, asymptotic,
+and imputed MK tests,
 as well as related statistics,
 with a consistent command-line interface.
 It supports parallel batch processing of genome-scale datasets,
@@ -87,6 +95,7 @@ with modern Python-based bioinformatics workflows.
     Standard MK           & \checkmark & \checkmark & ---          & \checkmark & \checkmark \\
     Polarized MK          & ---        & ---        & ---          & ---        & \checkmark \\
     Asymptotic MK         & ---        & \checkmark & \checkmark   & ---        & \checkmark \\
+    Imputed MK            & ---        & \checkmark & ---          & \checkmark & \checkmark \\
     $\alpha_\text{TG}$    & ---        & ---        & ---          & ---        & \checkmark \\
     Frequency filtering   & ---        & \checkmark & \checkmark   & \checkmark & \checkmark \\
     CLI                   & ---        & ---        & ---          & \checkmark & \checkmark \\

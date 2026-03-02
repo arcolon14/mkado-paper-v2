@@ -13,7 +13,7 @@ Full documentation, including tutorials and API reference,
 is available at \url{https://mkado.readthedocs.io}.
 
 \paragraph{Analysis methods}
-\mkado implements four MK-based analyses.
+\mkado implements five MK-based analyses.
 The \textit{standard} test computes the classical $2 \times 2$ table
 of nonsynonymous and synonymous changes
 in polymorphism and divergence ($D_n$, $D_s$, $P_n$, $P_s$),
@@ -42,6 +42,22 @@ and aggregated (pooled across genes) modes;
 confidence intervals are obtained by bootstrap resampling
 or Monte Carlo simulation from the parameter covariance matrix,
 respectively.
+The \textit{imputed} test corrects for weakly deleterious mutations
+by estimating their contribution from the ratio
+of low- to high-frequency synonymous polymorphisms
+\citep{murga-moreno2022}.
+Polymorphisms are split at a derived allele frequency cutoff
+(default 15\%),
+and the expected number of weakly deleterious nonsynonymous
+polymorphisms below the cutoff is imputed as
+$P_{wd} = P_{n,\text{low}} - P_{n,\text{high}} \times
+(P_{s,\text{low}} / P_{s,\text{high}})$.
+The corrected count $P_{n}^{*} = P_n - P_{wd}$
+is then used in the standard $2 \times 2$ test
+to obtain a bias-corrected $\alpha$.
+This approach retains more data than simple frequency filtering
+while still removing the downward bias from slightly deleterious
+variants.
 Finally, the Tarone-Greenland $\alpha_\text{TG}$ estimator
 \citep{stoletzki2011}
 provides an unbiased multi-gene estimate of $\alpha$
